@@ -1,4 +1,4 @@
-
+// use the querySelector() method to find specific elements by id within the DOM
   var formEl = document.querySelector("#task-form");
   var tasksToDoEl = document.querySelector("#tasks-to-do");
   var taskIdCounter = 0;
@@ -6,10 +6,23 @@
   var tasksInProgressEl = document.querySelector("#tasks-in-progress");
   var tasksCompletedEl = document.querySelector("#tasks-completed");
 
+  // WHAT IS THIS?
+  var taskDataObj = {
+    name: taskNameInput,
+    type: taskTypeInput,
+    status: "to do"
+  }
   
+  // WHAT IS THIS?
+  var tasks = [];
+  
+  // WHAT IS THIS?
   var taskFormHandler = function (event) {
+    // prevents browser form refreshing
     event.preventDefault();
+    // gets the value input to the task-name form field
     var taskNameInput = document.querySelector("input[name='task-name']").value;
+    // gets the value selected to the task-type form field
     var taskTypeInput = document.querySelector("select[name='task-type']").value;
   
     // check if input values are empty strings (validate)
@@ -42,6 +55,7 @@
   var createTaskEl = function(taskDataObj) {
     // create list item
     var listItemEl = document.createElement("li");
+    // sets the class
     listItemEl.className = "task-item";
 
     // add task id as a custom attribute
@@ -49,10 +63,12 @@
 
     // create div to hold task info and add to list item
     var taskInfoEl = document.createElement("div");
+    // sets the class
     taskInfoEl.className = "task-info";
-    // add HTML content to div
+    // add HTML content to div (changing the inner HTML)
     taskInfoEl.innerHTML = "<h3 class='task-name'>" + taskDataObj.name + "</h3><span class='task-type'>" + taskDataObj.type + "</span>";
 
+    // 
     var taskActionsEl = createTaskActions(taskIdCounter);
     listItemEl.appendChild(taskActionsEl);
 
@@ -198,6 +214,8 @@
   };
 
 // Create a new task
+// uses event listener method to "observe" clicks of the element object (formEl submit button)
+// pass two arguments "submit" - type of event we're listening for, and taskFormHandler - event response to execute function 
 formEl.addEventListener("submit", taskFormHandler);
 
 // for edit and delete buttons
