@@ -22,6 +22,7 @@ Using-
 [Submit Event](https://developer.mozilla.org/en-US/docs/Web/API/HTMLFormElement/submit_event)
 [Event](https://developer.mozilla.org/en-US/docs/Web/API/Event)
 [HTML Element](https://developer.mozilla.org/en-US/docs/Web/API/Event)
+[HTMLFormElement.reset() Element](https://developer.mozilla.org/en-US/docs/Web/API/HTMLFormElement/reset)
 
 ---
 

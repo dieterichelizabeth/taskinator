@@ -147,6 +147,38 @@ Step 4: Organize functionality. We'll refactor the code to make it more maintain
         - the other to accept the form values as arguments (taskFormHandler) and use them to create the new task item's HTML (createTaskHandler)
 Step 5: Address usability concerns. We'll improve the user experience by validating form input and resetting the form 
         after the user clicks the "Add Task" button.
+    - Step 5.1: add a validator to make sure the user inputs something to prevent empty fields from populating
+        - if either one or both of the variables are not true, then proceed," which is the same as "if either one or both of the variables are false, then proceed."
 
-
+--- BREAK: We want to allow users to edit and delete tasks, as well as set up tasks to do and tasks completed
+Step 1: Tasks will have a default status of Tasks To Do.
+    - Step 1.1: Add two new lists in the HTML.
+        - add a Tasks In Progress and a Tasks Completed list to Taskmaster.
+    - Step 1.2: Apply a unique Data id to each task. We'll create an id that uniquely identifies each task that's created.
+        - use setAttribute method to add the task id
+Step 2: Changing the status dropdown will move the task to the appropriate column (Tasks To Do, Tasks In Progress, or Tasks Completed).
+    - Step 2.1: Dynamically create task buttons for each task.
+        - Once we have an id for each task, we can start adding buttons and dropdowns that reference the id
+        - Because a task and its id are dynamically created, these buttons and dropdowns will also be dynamic.
+        - It will take several lines of code to make all of these elements, so offset that logic into its own function.
+            - add createTaskActions function
+            - Note the parameter called taskId. This is how we can pass a different id into the function each time 
+              to keep track of which elements we're creating for which task.
+            - create the div elemnents to act as a container for the other elements
+            - Create two new button elements
+            - add the drop down 
+                - Create an array to store drown down options
+                - create a for loop to create options based on array length
+            - append the taskActionsEl, passing the taskIDCounter as an argument to create buttons
+              that correspond to the current task id
+Step 3: Each task will have an Edit and Delete button.
+    - Step 3.1: Add the ability to delete a task. We'll use event listeners to allow the user to delete tasks.
+    - Step 3.2: Add the id attribute to the main element
+    - Step 3.3: add an event listener with event.target to know which button was clicked
+Step 4: Clicking Edit will load the task's information in the form and change the button to say "Save Task".
+    Step 4.1: Clicking "Save Task" will update the task's information in the corresponding column.
+        - Load the task into the form to be edited
+        - Users might want to edit existing tasks. We'll enable this by making sure the right task data loads in the editing form.
+        - Move the task based on status. If the user changes the status of a task, we'll make sure it is moved to the appropriate list.
+Step 5: Clicking Delete will remove the task entirely.
 */

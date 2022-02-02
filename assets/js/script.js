@@ -31,6 +31,7 @@
         return false;
     }
 
+    // resets the form so the user does not have to manually erase to add new task
     formEl.reset();
     // check if task is new or one being edited by seeing if it has a data-task-id attribute
     var isEdit = formEl.hasAttribute("data-task-id");
@@ -58,7 +59,7 @@
     // sets the class
     listItemEl.className = "task-item";
 
-    // add task id as a custom attribute
+    // add DATA task id as a custom attribute
     listItemEl.setAttribute("data-task-id", taskIdCounter);
 
     // create div to hold task info and add to list item
@@ -68,19 +69,20 @@
     // add HTML content to div (changing the inner HTML)
     taskInfoEl.innerHTML = "<h3 class='task-name'>" + taskDataObj.name + "</h3><span class='task-type'>" + taskDataObj.type + "</span>";
 
-    // 
+    // append taskActionesEl to listItemEl
     var taskActionsEl = createTaskActions(taskIdCounter);
     listItemEl.appendChild(taskActionsEl);
 
     listItemEl.appendChild(taskInfoEl);
 
+    // pass the TaskIDCounter to create buttons that correspond to the current task id
     var taskActionsEl = createTaskActions(taskIdCounter);
     console.log(taskActionsEl);
 
     // add HTML content to div/add entire list item to list
     tasksToDoEl.appendChild(listItemEl);
 
-    // increase task counter for next unique id
+    // increase task counter for next unique Data id
     taskIdCounter++;
   };
 
@@ -199,8 +201,8 @@
     document.querySelector("input[name='task-name']").value = taskName;
     document.querySelector("select[name='task-type']").value = taskType;
 
-    // set data attribute to the form with a value of the task's id so it knows which one is being edited
-    formEl.setAttribute("data-task-id", taskId);
+    // data attribute to the form with a value of the task's id so it knows which one is being edited
+    formElAttribute("data-task-id", taskId);
     // update form's button to reflect editing a task rather than creating a new one
     formEl.querySelector("#save-task").textContent = "Save Task";
   };
