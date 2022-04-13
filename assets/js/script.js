@@ -262,9 +262,31 @@ var saveTasks = function () {
   localStorage.setItem("tasks", JSON.stringify(tasks));
 };
 
+// Display tasks on page load
+var loadTasks = function () {
+  var savedTasks = localStorage.getItem("tasks");
+  // if there are no tasks, set tasks to an empty array and return out of the function... else, load up saved tasks
+  if (!savedTasks) {
+    return false;
+  }
+
+  // parse into array of objects
+  savedTasks = JSON.parse(savedTasks);
+
+  // loop through savedTasks array
+  for (var i = 0; i < savedTasks.length; i++) {
+    // pass each task object into the `createTaskEl()` function
+    createTaskEl(savedTasks[i]);
+  }
+};
+
 // Create a new task
-// uses event listener method to "observe" clicks of the element object (formEl submit button)
-// pass two arguments "submit" - type of event we're listening for, and taskFormHandler - event response to execute function
 formEl.addEventListener("submit", taskFormHandler);
+
+// Edit and Delete buttons
 pageContentEl.addEventListener("click", taskButtonHandler);
+
+// For changing the status of a task
 pageContentEl.addEventListener("change", taskStatusChangeHandler);
+
+loadTasks();
